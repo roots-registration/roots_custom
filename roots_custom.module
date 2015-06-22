@@ -1,0 +1,7 @@
+<?php 
+function roots_custom_form_commerce_checkout_form_roots_reg_children_info_alter(&$form, &$form_state, $form_id) {
+  $form['roots_reg_children_pane']['redhen_contact_email']['#access'] = FALSE;
+}
+function roots_custom_form_commerce_checkout_form_checkout_alter(&$form, &$form_state, $form_id) {
+  $form['commerce_payment']['payment_details']['#suffix'] = '<p>If you are not paying full price right now please check this so we can charge your card for the remaining balance.</p></div>';
+}
