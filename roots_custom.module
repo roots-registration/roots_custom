@@ -62,5 +62,7 @@ function roots_custom_form_user_register_form_alter(&$form, $form_id){
   dpm($form);
 }
 function roots_custom_menu_alter(&$items){
-  $items['user/register']['title'] = 'rename tab link';
+  $items['user/register']['title'] = 'New student registration';
+  $items['user/login']['title'] = 'Returning student registration';
+  $items['user/password']['type'] = MENU_CALLBACK;
 }
