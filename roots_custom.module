@@ -5,3 +5,62 @@ function roots_custom_form_commerce_checkout_form_roots_reg_children_info_alter(
 function roots_custom_form_commerce_checkout_form_checkout_alter(&$form, &$form_state, $form_id) {
   $form['commerce_payment']['payment_details']['#suffix'] = '<p>If you are not paying full price right now please check this so we can charge your card for the remaining balance.</p></div>';
 }
+
+/**
+ * Implements hook_commerce_checkout_pane_info().
+ */
+function roots_custom_commerce_checkout_pane_info() {
+  $checkout_panes = array();
+
+  $checkout_panes['roots_custom_message_pane'] = array(
+    'title' => t('Terms and Conditions'),
+    'base' => 'commerce_message_pane', // <== That's all that is needed
+    'enabled' => TRUE,
+  );
+
+  return $checkout_panes;
+}
+
+/**
+ *
+ */
+
+function roots_custom_preprocess_page(&$variables){
+//  dpm($variables);
+  /*  print['page']['content']['system_main']['#title_display'];*/
+//  $path = $_GET['q'];
+//
+//  if (strpos($path,'user/register') !== false) {
+//    drupal_set_title('Course Registration');
+//  }
+}
+//function roots_custom_page_alter(&$page){
+//  dpm($page);
+//  $page['content']['system_main']['#title_display'] = 'Page Title';
+//  dpm($page);
+//}
+
+//function roots_custom_form_alter(&$form, $form_id){
+//  dpm($form);
+//  if ($form_id == 'user_register_form') {
+//    drupal_set_title('Create new account');
+//  }
+//  elseif ($form_id == 'user_pass') {
+//    drupal_set_title(t('Request new password'));
+//  }
+//  elseif ($form_id == 'user_login') {
+//  drupal_set_title(t('Log in'));
+//  }
+//}
+function roots_custom_form_user_register_form_alter(&$form, $form_id){
+  drupal_set_title('Course Registration');
+  $form['instructions'] = array(
+    '#markup' => t('Fill out your name, whether you\'re registering yourself or your child'),
+    '#weight' => -21,
+  );
+  $form['redhen_contact']['#weight'] = -20;
+  dpm($form);
+}
+function roots_custom_menu_alter(&$items){
+  $items['user/register']['title'] = 'rename tab link';
+}
