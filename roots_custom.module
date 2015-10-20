@@ -90,3 +90,12 @@ function roots_custom_form_user_pass_alter(&$form, $form_id) {
   $form['actions']['submit']['#value'] = 'Email me a login link';
   //dpm($form);
 }
+
+function roots_custom_form_program_registration_node_form_alter(&$form, $form_id) {
+  $form['author']['#weight'] = -10;
+  $form['author']['#title'] = 'Registrant Contact';
+  $form['author']['name']['#title'] = 'Email address of the existing drupal user to email for correspondences';
+  unset($form['author']['name']['#description'], $form['author']['date']);
+  unset ($form['revision_information'], $form['metatags'], $form['path'], $form['menu'], $form['options']);
+  dpm($form);
+}
