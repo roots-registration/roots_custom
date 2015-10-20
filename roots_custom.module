@@ -21,37 +21,6 @@ function roots_custom_commerce_checkout_pane_info() {
   return $checkout_panes;
 }
 
-/**
- *
- */
-
-function roots_custom_preprocess_page(&$variables){
-//  dpm($variables);
-  /*  print['page']['content']['system_main']['#title_display'];*/
-//  $path = $_GET['q'];
-//
-//  if (strpos($path,'user/register') !== false) {
-//    drupal_set_title('Course Registration');
-//  }
-}
-//function roots_custom_page_alter(&$page){
-//  dpm($page);
-//  $page['content']['system_main']['#title_display'] = 'Page Title';
-//  dpm($page);
-//}
-
-//function roots_custom_form_alter(&$form, $form_id){
-//  dpm($form);
-//  if ($form_id == 'user_register_form') {
-//    drupal_set_title('Create new account');
-//  }
-//  elseif ($form_id == 'user_pass') {
-//    drupal_set_title(t('Request new password'));
-//  }
-//  elseif ($form_id == 'user_login') {
-//  drupal_set_title(t('Log in'));
-//  }
-//}
 function roots_custom_menu_alter(&$items){
   $items['user/register']['title'] = 'New student registration';
   $items['user/login']['title'] = 'Returning student registration';
@@ -69,7 +38,6 @@ function roots_custom_form_user_register_form_alter(&$form, $form_id){
 }
 function roots_custom_form_user_login_alter(&$form, $form_id){
   drupal_set_title('Course Registration');
-  //dpm($form);
   $form['instructions'] = array(
     '#markup' => t('<p class="form-instructions">If you\'ve signed up on our website before you can register now by logging in here.</p>'),
     '#weight' => -10,
@@ -88,5 +56,4 @@ function roots_custom_form_user_pass_alter(&$form, $form_id) {
   );
   unset($form['name']['#description']);
   $form['actions']['submit']['#value'] = 'Email me a login link';
-  //dpm($form);
 }
