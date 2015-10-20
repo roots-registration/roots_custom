@@ -52,17 +52,41 @@ function roots_custom_preprocess_page(&$variables){
 //  drupal_set_title(t('Log in'));
 //  }
 //}
-function roots_custom_form_user_register_form_alter(&$form, $form_id){
-  drupal_set_title('Course Registration');
-  $form['instructions'] = array(
-    '#markup' => t('Fill out your name, whether you\'re registering yourself or your child'),
-    '#weight' => -21,
-  );
-  $form['redhen_contact']['#weight'] = -20;
-  dpm($form);
-}
 function roots_custom_menu_alter(&$items){
   $items['user/register']['title'] = 'New student registration';
   $items['user/login']['title'] = 'Returning student registration';
   $items['user/password']['type'] = MENU_CALLBACK;
+}
+
+function roots_custom_form_user_register_form_alter(&$form, $form_id){
+  drupal_set_title('Course Registration');
+  $form['instructions'] = array(
+    '#markup' => t('<p class="form-instructions">Enter your own name (even if you\'re registering your child).</p>'),
+    '#weight' => -21,
+  );
+  $form['redhen_contact']['#weight'] = -20;
+  $form['actions']['submit']['#value'] = 'Begin registration';
+}
+function roots_custom_form_user_login_alter(&$form, $form_id){
+  drupal_set_title('Course Registration');
+  //dpm($form);
+  $form['instructions'] = array(
+    '#markup' => t('<p class="form-instructions">If you\'ve signed up on our website before you can register now by logging in here.</p>'),
+    '#weight' => -10,
+  );
+  $form['password-reset'] = array(
+    '#markup' => t('<p class="password-reset"><a href="/user/password" title="Login without password">Register without your password</a></p>'),
+    '#weight' => 1,
+  );
+  $form['actions']['submit']['#value'] = 'Begin registration';
+}
+function roots_custom_form_user_pass_alter(&$form, $form_id) {
+  drupal_set_title('Course Registration');
+  $form['instructions'] = array(
+    '#markup' => t('<p class="form-instructions">Our robot will email you a link so you can log in and register.  After you register you can reset your password if you want.</p>'),
+    '#weight' => -10,
+  );
+  unset($form['name']['#description']);
+  $form['actions']['submit']['#value'] = 'Email me a login link';
+  //dpm($form);
 }
