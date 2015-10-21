@@ -42,10 +42,12 @@ function roots_custom_form_user_login_alter(&$form, $form_id){
     '#markup' => t('<p class="form-instructions">If you\'ve signed up on our website before you can register now by logging in here.</p>'),
     '#weight' => -10,
   );
-  $form['password-reset'] = array(
-    '#markup' => t('<p class="password-reset"><a href="/user/password" title="Login without password">Register without your password</a></p>'),
-    '#weight' => 1,
-  );
+  //$form['password-reset'] = array(
+  //  '#markup' => t('<p class="password-reset"><a href="/user/password" title="Login without password">Register without your password</a></p>'),
+  $form['actions']['submit']['#value'] = 'Save';
+  //  '#weight' => 1,
+  //);
+  $form['pass']['#description'] = 'If you forgot your password you can <a href="/user/password" title="Login without password">register without it here</a>.';
   $form['actions']['submit']['#value'] = 'Begin registration';
 }
 function roots_custom_form_user_pass_alter(&$form, $form_id) {
